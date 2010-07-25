@@ -42,6 +42,8 @@ class GatorCanvas {
 		int          GetScale();
 		
 		bool         SetSize(int new_w, int new_h);
+		int          GetW();
+		int          GetH();
 		
 		void         SetPallet(GatorPallet *new_pallet);
 		GatorPallet *GetPallet();
@@ -50,6 +52,14 @@ class GatorCanvas {
 		
 		inline int   XToXP(int x) { return (x * scale) - viewport_xp; };
 		inline int   YToYP(int y) { return (y * scale) - viewport_yp; };
+		
+		inline int XPToX(int xp) {
+			return (xp + viewport_xp + (scale/2)) / scale;
+		};
+		
+		inline int YPToY(int yp) {
+			return (yp + viewport_yp + (scale/2)) / scale;
+		};
 		
 		inline int   XPClip(int xp) { return (xp < 0) ? -1
 		                                     : ((xp > w) ? w + 1 : xp); };
@@ -60,6 +70,9 @@ class GatorCanvas {
 		int          GetMaxY(void);
 		
 		void         AddElement(GatorElement *new_element);
+		
+		void         OnButtonDown(int xp, int yp, bool left, bool right, bool middle);
+		void OnSelect(int x, int y, bool accumulate);
 };
 
 #endif

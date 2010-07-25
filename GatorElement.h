@@ -32,7 +32,8 @@ class GatorElement {
 		void         Selected(bool new_selected);
 		bool         Selected(void);
 		
-		bool         Draw(SDL_Surface *surf);
+		virtual bool Draw(SDL_Surface *surf);
+		virtual bool AtPosition(int x, int y);
 };
 
 #endif

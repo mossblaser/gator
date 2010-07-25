@@ -39,6 +39,7 @@ bool
 GatorCanvas::SetScale(int new_scale)
 {
 	scale = new_scale;
+	return true;
 }
 
 bool
@@ -58,6 +59,20 @@ GatorCanvas::SetSize(int new_w, int new_h)
 	SDL_FreeSurface(tmp_surf);
 	
 	return surf != NULL;
+}
+
+
+int
+GatorCanvas::GetW(void)
+{
+	return w;
+}
+
+
+int
+GatorCanvas::GetH(void)
+{
+	return h;
 }
 
 

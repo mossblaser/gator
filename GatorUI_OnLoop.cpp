@@ -12,7 +12,7 @@ GatorUI::OnLoop(void)
 		ticks = SDL_GetTicks();
 	}
 	
-	if (!canvas->Draw(display, 10, 10))
+	if (!canvas->Draw(display, canvas_x, canvas_y))
 		printf("canvas->Draw failed!\n");
 }
 

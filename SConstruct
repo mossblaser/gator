@@ -32,7 +32,9 @@ SOURCES = ["GatorUI.cpp",
            "GatorCanvas.cpp",
            "GatorCanvas_Draw.cpp",
            "GatorCanvas_DrawGrid.cpp",
-           "GatorElement.cpp"]
+           "GatorElement.cpp",
+           "GatorSDLEventHandler.cpp",
+           "GatorCanvas_OnEvent.cpp"]
 
 # build target
 env.Program(target = 'gator', source = SOURCES)

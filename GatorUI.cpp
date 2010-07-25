@@ -1,6 +1,10 @@
 #include "GatorUI.h"
 
-GatorUI::GatorUI() {
+GatorUI::GatorUI() : GatorSDLEventHandler()
+{
+	canvas_x = 10;
+	canvas_y = 10;
+	
 	running = true;
 	
 	display = NULL;

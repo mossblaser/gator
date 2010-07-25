@@ -11,8 +11,11 @@ GatorCanvas::Draw(SDL_Surface *target_surf, int x, int y)
 	DrawGrid();
 	
 	std::list<GatorElement *>::iterator i;
-	for (i = elements.begin(); i != elements.end(); ++i)
-		(*i)->Draw(surf);
+	GatorElement *element;
+	for (i = elements.begin(); i != elements.end(); ++i) {
+		element = (*i);
+		element->Draw(surf);
+	}
 	
 	SDL_Rect dest_rect;
 	dest_rect.x = x;

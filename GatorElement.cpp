@@ -72,3 +72,10 @@ GatorElement::Draw(SDL_Surface *surf)
 	
 	return true;
 }
+
+bool
+GatorElement::AtPosition(int targ_x, int targ_y)
+{
+	return (targ_x >= x && targ_x <= (x + w)
+	        && targ_y >= y && targ_y <= (y + h));
+}
