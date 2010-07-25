@@ -12,6 +12,8 @@ GatorCanvas::GatorCanvas(void)
 	
 	pallet = NULL;
 	surf = NULL;
+	
+	pan_mode = false;
 }
 
 GatorCanvas::~GatorCanvas(void)

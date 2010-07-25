@@ -35,6 +35,9 @@ class GatorUI : public GatorSDLEventHandler {
 		
 		void OnQuit(void);
 		void OnButtonDown(int x, int y, bool left, bool right, bool middle);
+		void OnButtonUp(int x, int y, bool left, bool right, bool middle);
+		void OnMouseMove(int xp, int yp, int relxp, int relyp,
+		                 bool left, bool right, bool middle);
 };
 
 #endif

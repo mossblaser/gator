@@ -61,7 +61,7 @@ GatorElement::Draw(SDL_Surface *surf)
 	int xp  = canvas->XToXP(x),
 	    yp  = canvas->YToYP(y),
 	    x2p = canvas->XToXP(x+w),
-	    y2p = canvas->XToXP(y+h);
+	    y2p = canvas->YToYP(y+h);
 	
 	Uint32 color = Selected() ? canvas->GetPallet()->element_selected
 	                          : canvas->GetPallet()->element_normal;
