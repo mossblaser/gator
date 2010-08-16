@@ -1,12 +1,15 @@
+#include <SDL.h>
+#include <SDL_image.h>
+#include "sdl/event_handler.h"
+#include "sdl/display.h"
 /* From: http://www.sdltutorials.com/sdl-events/ */
-#include "GatorSDLEventHandler.h"
 
-GatorSDLEventHandler::GatorSDLEventHandler() {
-}
-GatorSDLEventHandler::~GatorSDLEventHandler() {
-	//Do nothing
-}
-void GatorSDLEventHandler::OnEvent(SDL_Event* Event) {
+using namespace gator::sdl;
+
+EventHandler::EventHandler(void)  {};
+EventHandler::~EventHandler(void) {};
+
+void EventHandler::OnEvent(SDL_Event* Event) {
 	switch(Event->type) {
 		case SDL_ACTIVEEVENT: {
 			switch(Event->active.state) {
@@ -116,67 +119,67 @@ void GatorSDLEventHandler::OnEvent(SDL_Event* Event) {
 		}
 	}
 }
-void GatorSDLEventHandler::OnInputFocus() {
+void EventHandler::OnInputFocus() {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnInputBlur() {
+void EventHandler::OnInputBlur() {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
+void EventHandler::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode) {
+void EventHandler::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnMouseFocus() {
+void EventHandler::OnMouseFocus() {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnMouseBlur() {
+void EventHandler::OnMouseBlur() {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnMouseMove(int mX, int mY, int relX, int relY, bool Left,bool Right,bool Middle) {
+void EventHandler::OnMouseMove(int mX, int mY, int relX, int relY, bool Left,bool Right,bool Middle) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnMouseWheel(bool Up, bool Down) {
+void EventHandler::OnMouseWheel(bool Up, bool Down) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnButtonDown(int mX, int mY, bool left, bool right, bool middle) {
+void EventHandler::OnButtonDown(int mX, int mY, bool left, bool right, bool middle) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnButtonUp(int mX, int mY, bool left, bool right, bool middle) {
+void EventHandler::OnButtonUp(int mX, int mY, bool left, bool right, bool middle) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnJoyAxis(Uint8 which,Uint8 axis,Sint16 value) {
+void EventHandler::OnJoyAxis(Uint8 which,Uint8 axis,Sint16 value) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnJoyButtonDown(Uint8 which,Uint8 button) {
+void EventHandler::OnJoyButtonDown(Uint8 which,Uint8 button) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnJoyButtonUp(Uint8 which,Uint8 button) {
+void EventHandler::OnJoyButtonUp(Uint8 which,Uint8 button) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnJoyHat(Uint8 which,Uint8 hat,Uint8 value) {
+void EventHandler::OnJoyHat(Uint8 which,Uint8 hat,Uint8 value) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnJoyBall(Uint8 which,Uint8 ball,Sint16 xrel,Sint16 yrel) {
+void EventHandler::OnJoyBall(Uint8 which,Uint8 ball,Sint16 xrel,Sint16 yrel) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnMinimize() {
+void EventHandler::OnMinimize() {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnRestore() {
+void EventHandler::OnRestore() {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnResize(int w,int h) {
+void EventHandler::OnResize(int w,int h) {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnExpose() {
+void EventHandler::OnExpose() {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnQuit() {
+void EventHandler::OnQuit() {
 	//Pure virtual, do nothing
 }
-void GatorSDLEventHandler::OnUser(Uint8 type, int code, void* data1, void* data2) {
+void EventHandler::OnUser(Uint8 type, int code, void* data1, void* data2) {
 	//Pure virtual, do nothing
 }
 
