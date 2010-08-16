@@ -1,8 +1,5 @@
-#include <SDL.h>
-#include <SDL_image.h>
-#include "sdl/event_handler.h"
-#include "sdl/display.h"
 /* From: http://www.sdltutorials.com/sdl-events/ */
+#include "sdl/event_handler.h"
 
 using namespace gator::sdl;
 

@@ -1,5 +1,3 @@
-#include <SDL.h>
-#include <SDL_gfxPrimitives.h>
 #include "ui/widget.h"
 
 using namespace gator::ui;

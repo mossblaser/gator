@@ -1,9 +1,14 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-#define VWIDTH  1024
-#define VHEIGHT  768
-#define VDEPTH    32
+#include <vector>
+
+#include <SDL.h>
+#include <SDL_image.h>
+
+#include "sdl/video_options.h"
+#include "sdl/event_handler.h"
+#include "ui/widget.h"
 
 int main(int argc, char *argv[]);
 
@@ -19,12 +24,13 @@ namespace gator {
 			private:
 				SDL_Surface *display;
 				
+				std::vector<gator::ui::Widget*> widgets;
+				
 				bool running;
 			
 			public:
 				Display(void);
 				virtual ~Display(void);
-				
 				int Main(void);
 				
 			public:
@@ -34,7 +40,7 @@ namespace gator {
 				void OnCleanup(void);
 				
 			protected:
-				virtual void OnQuit(void);
+				void OnQuit(void);
 			
 		}; // class Display
 		

@@ -1,6 +1,3 @@
-#include <SDL.h>
-#include <SDL_image.h>
-#include "sdl/event_handler.h"
 #include "sdl/display.h"
 
 using namespace gator::sdl;
@@ -8,7 +5,12 @@ using namespace gator::sdl;
 void
 Display::OnRender(void)
 {
-	// TODO: Draw stuff!
+	std::vector<gator::ui::Widget*>::iterator widget;
+	for (widget = widgets.begin();
+	     widget != widgets.end();
+	     ++widget) {
+		(*widget)->Draw();
+	}
 	
 	SDL_Flip(display);
 } // Display::OnRender

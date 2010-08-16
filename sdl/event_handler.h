@@ -2,6 +2,8 @@
 #define GATOR_SDL_EVENT_HANDLER_H
 /* From: http://www.sdltutorials.com/sdl-events/ */
 
+#include <SDL.h>
+
 namespace gator {
 	namespace sdl {
 		class EventHandler {

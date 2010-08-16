@@ -24,6 +24,7 @@ env.Append(CPPPATH = ["."])
 SOURCES = ([]
            + glob("sdl/*.cpp")
            + glob("sdl/*/*.cpp")
+           + glob("ui/*.cpp")
            + glob("ui/*/*.cpp")
           )
 

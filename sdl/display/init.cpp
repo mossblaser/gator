@@ -1,7 +1,5 @@
-#include <SDL.h>
-#include <SDL_image.h>
-#include "sdl/event_handler.h"
 #include "sdl/display.h"
+#include "ui/canvas.h"
 
 using namespace gator::sdl;
 
@@ -17,6 +15,9 @@ Display::OnInit(void)
 	
 	int flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
 	if ((IMG_Init(flags) & flags) != flags) return false;
+	
+	// Push the canvas onto the widgets vector
+	widgets.push_back(new gator::ui::Canvas(NULL, display));
 	
 	return true;
 } // Display::OnInit
