@@ -56,16 +56,16 @@ namespace gator {
 				
 			public:
 				/** Get the X coordinate of the widget  */
-				virtual int GetX(void);
+				virtual const int GetX(void);
 				
 				/** Get the Y coordinate of the widget  */
-				virtual int GetY(void);
+				virtual const int GetY(void);
 				
 				/** Get the width of the widget */
-				virtual int GetWidth(void);
+				virtual const int GetWidth(void);
 				
 				/** Get the height of the widget */
-				virtual int GetHeight(void);
+				virtual const int GetHeight(void);
 				
 				/** Set the X coordinate of the widget  */
 				virtual void SetX(int x);
@@ -119,6 +119,7 @@ namespace gator {
 				
 				virtual bool OnKeyDown(SDLKey key, SDLMod mod, Uint16 unicode);
 				virtual bool OnKeyUp  (SDLKey key, SDLMod mod, Uint16 unicode);
+				
 		}; // class Widget
 		
 	} // namespace ui

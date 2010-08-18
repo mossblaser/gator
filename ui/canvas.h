@@ -1,15 +1,25 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
+
+#define ZOOM_SENSITIVITY 10
+
+
+#include <vector>
+
 #include <SDL_gfxPrimitives.h>
 #include "ui/pallet.h"
 #include "ui/blit_widget.h"
 #include "ui/grid.h"
+#include "ui/element.h"
+#include "ui/selectable.h"
+#include "ui/elements/test.h"
 
 namespace gator {
 	namespace ui {
 		
 		class Grid;
+		class Element;
 		
 		/**
 		 * An item which displays on the screen but which internally draws onto its
@@ -19,6 +29,8 @@ namespace gator {
 			protected:
 				Pallet *pallet;
 				Grid *grid;
+				
+				std::vector<Element*> elements;
 			
 			public:
 				Canvas(Widget *parent, SDL_Surface *surf);
@@ -67,10 +79,17 @@ namespace gator {
 				const int SY (int y);
 				
 				
-				/** Check if a rectangle would be visible anywhere on the screen. */
+				/** Check if a rectangle would be visible anywhere on the screen. (Not
+				 * grid coordinates). */
 				const bool RectOnScreen(int x1, int y1, int x2, int y2);
 			
-		}; // class BlitWidget
+			public:
+				virtual bool OnMouseMove (int x, int y, int relx, int rely,
+				                          bool left, bool right, bool middle);
+				
+				virtual void OnPan(int relx, int rely);
+				virtual void OnZoom(int change);
+		}; // class Canvas
 		
 	} // namespace ui
 } // namespace gator

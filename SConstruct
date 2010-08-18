@@ -26,6 +26,7 @@ SOURCES = ([]
            + glob("sdl/*/*.cpp")
            + glob("ui/*.cpp")
            + glob("ui/*/*.cpp")
+           + glob("ui/*/*/*.cpp")
           )
 
 # build target

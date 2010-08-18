@@ -20,6 +20,9 @@ namespace gator {
 				void VLine(SDL_Surface *surf, int x, int y1, int y2, Uint32 colour);
 			
 			public:
+				Grid(void);
+				virtual~Grid(void);
+				
 				virtual bool Draw(Canvas *canvas);
 		}; // class element
 		

@@ -9,6 +9,14 @@ namespace gator {
 		
 		class Pallet
 		{
+			private:
+				Uint32 BG;
+				Uint32 CanvasBG;
+				Uint32 CanvasGridMaj;
+				Uint32 CanvasGridMin;
+				Uint32 Element;
+				Uint32 ElementSel;
+			
 			public:
 				Pallet(void);
 				~Pallet(void);
@@ -17,12 +25,8 @@ namespace gator {
 				const Uint32 GetCanvasBG(void);
 				const Uint32 GetCanvasGridMaj(void);
 				const Uint32 GetCanvasGridMin(void);
-			
-			private:
-				Uint32 BG;
-				Uint32 CanvasBG;
-				Uint32 CanvasGridMaj;
-				Uint32 CanvasGridMin;
+				const Uint32 GetElement(void);
+				const Uint32 GetElementSel(void);
 				
 		}; // class Pallet
 		

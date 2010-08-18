@@ -41,6 +41,8 @@ namespace gator {
 				
 			protected:
 				void OnQuit(void);
+				virtual void OnMouseMove(int x, int y, int relx, int rely,
+				                         bool left,bool right,bool middle);
 			
 		}; // class Display
 		

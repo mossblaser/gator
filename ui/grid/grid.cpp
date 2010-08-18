@@ -3,6 +3,19 @@
 using namespace gator::ui;
 
 
+Grid::Grid(void) :
+Element(0,0,0,0)
+{
+	// Do nothing...
+} // Grid::Grid
+
+
+Grid::~Grid(void)
+{
+	// Do nothing...
+} // Grid::~Grid
+
+
 void
 Grid::HLine(SDL_Surface *surf, int x1, int x2, int y, Uint32 colour)
 {
@@ -20,8 +33,14 @@ Grid::VLine(SDL_Surface *surf, int x, int y1, int y2, Uint32 colour)
 bool
 Grid::Draw(Canvas *canvas)
 {
-	SDL_Surface *surf = canvas->GetSurf();
-	Pallet *pallet = canvas->GetPallet();
+	if (canvas == NULL)
+		return false;
+	
+	SDL_Surface *surf   = canvas->GetSurf();
+	Pallet      *pallet = canvas->GetPallet();
+	
+	if (surf == NULL || pallet == NULL)
+		return false;
 	
 	// Get grid coordinates just off the edges of the screen
 	int l = canvas->SX(canvas->GetX()) - 1;
@@ -62,7 +81,6 @@ Grid::Draw(Canvas *canvas)
 		if (x % GRID_MAJOR_INTERVAL == 0)
 			VLine(surf, canvas->XS(x), y1, y2, colour);
 	}
-	
 	
 	return true;
 } // Grid::Draw

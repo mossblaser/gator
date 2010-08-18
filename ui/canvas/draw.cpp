@@ -21,6 +21,13 @@ Canvas::Draw(void)
 	
 	grid->Draw(this);
 	
+	std::vector<Element*>::iterator element;
+	for (element = elements.begin();
+	     element != elements.end();
+	     ++element) {
+		(*element)->Draw(this);
+	}
+	
 	NeedsRedraw(true);
 	return BlitWidget::Draw();
 } // Canvas::Draw

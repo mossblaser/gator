@@ -12,11 +12,27 @@ BlitWidget(parent, surf)
 	
 	grid = new Grid();
 	pallet = new Pallet();
+	
+	
+	// XXX: Testing...
+	
+	elements.push_back(new TestElement(0,0));
+	elements.push_back(new TestElement(0,10));
+	
+	// XXX: End Testing...
 } // Canvas::Canvas
 
 
 Canvas::~Canvas(void)
 {
+	// XXX Testing-related (possibly just for now)
+	std::vector<Element*>::iterator element;
+	for (element = elements.begin();
+	     element != elements.end();
+	     ++element) {
+		delete (*element);
+	}
+	
 	delete pallet;
 } // Canvas::~Canvas
 
