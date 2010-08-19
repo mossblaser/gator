@@ -3,7 +3,7 @@
 using namespace gator::ui;
 
 ORGate::ORGate(int x, int y) :
-Selectable(x, y, AND_GATE_WIDTH, AND_GATE_HEIGHT)
+Selectable(x, y, OR_GATE_WIDTH, OR_GATE_HEIGHT)
 {
 	// Do nothing...
 } // ORGate::ORGate

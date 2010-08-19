@@ -15,7 +15,9 @@
 #include "ui/selectable.h"
 #include "ui/elements/and.h"
 #include "ui/elements/or.h"
+#include "ui/elements/nor.h"
 #include "ui/elements/xor.h"
+#include "ui/elements/wirenode.h"
 
 namespace gator {
 	namespace ui {

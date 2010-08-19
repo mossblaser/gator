@@ -1,22 +1,22 @@
-#include "ui/elements/xor.h"
+#include "ui/elements/nor.h"
 
 using namespace gator::ui;
 
-XORGate::XORGate(int x, int y) :
-Selectable(x, y, XOR_GATE_WIDTH, XOR_GATE_HEIGHT)
+NORGate::NORGate(int x, int y) :
+Selectable(x, y, NOR_GATE_WIDTH, NOR_GATE_HEIGHT)
 {
 	// Do nothing...
-} // XORGate::XORGate
+} // NORGate::NORGate
 
 
-XORGate::~XORGate(void)
+NORGate::~NORGate(void)
 {
 	// Do nothing...
-} // XORGate::~XORGate
+} // NORGate::~NORGate
 
 
 bool
-XORGate::Draw(Canvas *canvas)
+NORGate::Draw(Canvas *canvas)
 {
 	if (canvas == NULL)
 		return false;
@@ -39,10 +39,6 @@ XORGate::Draw(Canvas *canvas)
 	// XXX: Nasty hack
 	int il3  = canvas->XS(GetX() + 1) + (canvas->GetScale()/2);
 	
-	// Inner-inner back of gate
-	int iil  = il2;
-	int iil2  = canvas->XS(GetX() + 3);
-	
 	// The tip of the gate
 	int ir2 = canvas->XS(GetX() + GetWidth() - 1);
 	int c   = canvas->YS(GetY() + (GetHeight()/2));
@@ -56,18 +52,18 @@ XORGate::Draw(Canvas *canvas)
 	
 	// XXX: Approximation!
 	// Gate
-	Sint16 vx[] = {iil, iil2, iil, ir, ir2, ir, iil};
-	Sint16 vy[] = {b,   c,    t,   t,  c,   b,  b};
+	Sint16 vx[] = {il, il2, il, ir, ir2, ir, il};
+	Sint16 vy[] = {b,  c,   t,  t,  c,   b,  b};
 	polygonColor(surf, vx, vy, 7, colour);
-	
-	lineColor(surf, il, t, il2, c, colour);
-	lineColor(surf, il, b, il2, c, colour);
 	
 	// Wires
 	lineColor(surf, l, iwt, il3, iwt, colour); // Left Top
 	lineColor(surf, l, iwb, il3, iwb, colour); // Left Bottom
-	lineColor(surf, ir2, c, r, c, colour); // Right
+	//lineColor(surf, ir2, c, r, c, colour); // Right
+	
+	circleColor(surf, r - (canvas->GetScale()/2), c,
+	            canvas->GetScale()/2, colour);
 	
 	return true;
-} // XORGate::Draw
+} // NORGate::Draw
 

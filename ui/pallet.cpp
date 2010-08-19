@@ -11,6 +11,8 @@ Pallet::Pallet(void)
 	CanvasGridMin = 0x444444FF;
 	Element       = 0xAAAAAAFF;
 	ElementSel    = 0xFFAA00FF;
+	Wire          = 0xAAAAAAFF;
+	WireSel       = 0xFFAA00FF;
 } // Pallet::Pallet
 
 
@@ -26,3 +28,5 @@ const Uint32 Pallet::GetCanvasGridMaj(void) {return CanvasGridMaj;}
 const Uint32 Pallet::GetCanvasGridMin(void) {return CanvasGridMin;}
 const Uint32 Pallet::GetElement(void)       {return Element;}
 const Uint32 Pallet::GetElementSel(void)    {return ElementSel;}
+const Uint32 Pallet::GetWire(void)          {return Wire;}
+const Uint32 Pallet::GetWireSel(void)       {return WireSel;}

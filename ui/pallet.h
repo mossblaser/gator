@@ -16,6 +16,8 @@ namespace gator {
 				Uint32 CanvasGridMin;
 				Uint32 Element;
 				Uint32 ElementSel;
+				Uint32 Wire;
+				Uint32 WireSel;
 			
 			public:
 				Pallet(void);
@@ -27,6 +29,8 @@ namespace gator {
 				const Uint32 GetCanvasGridMin(void);
 				const Uint32 GetElement(void);
 				const Uint32 GetElementSel(void);
+				const Uint32 GetWire(void);
+				const Uint32 GetWireSel(void);
 				
 		}; // class Pallet
 		
