@@ -35,22 +35,24 @@ Canvas::OnSelect(int x, int y, bool drag)
 		 *  > Drag from an non-selected element to select and drag that one element.
 		 *  > Drag from a selected element to drag all selected elements.
 		 */
+		bool element_at_point = false;
 		bool new_selection = false;
 		std::vector<Selectable*>::iterator element;
 		
 		for (element = elements.begin(); element != elements.end(); ++element) {
 			if ((*element)->IsAtPoint(grid_x, grid_y)) {
+				element_at_point = true;
 				if (!(*element)->IsSelected()) {
 					new_selection = true;
 				}
 			}
 		}
 		
-		if (new_selection) {
+		if (new_selection || !element_at_point) {
 			for (element = elements.begin(); element != elements.end(); ++element) {
 				if ((*element)->IsAtPoint(grid_x, grid_y)) {
 					(*element)->SetSelected(true);
-				} else if (!shift) {
+				} else if (!element_at_point || !shift) {
 					(*element)->SetSelected(false);
 				}
 			}
