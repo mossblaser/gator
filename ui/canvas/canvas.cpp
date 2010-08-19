@@ -16,8 +16,10 @@ BlitWidget(parent, surf)
 	
 	// XXX: Testing...
 	
-	elements.push_back(new TestElement(0,0));
-	elements.push_back(new TestElement(0,10));
+	int x, y;
+	for (x = 0; x < 100; x++)
+		for (y = 0; y < 100; y++)
+			elements.push_back(new TestElement(x*10,y*5));
 	
 	// XXX: End Testing...
 } // Canvas::Canvas

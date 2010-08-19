@@ -12,20 +12,15 @@ Canvas::OnMouseMove(int x, int y, int relx, int rely,
 	    || y >= GetY() + GetHeight())
 		return false;
 	
-	
-	static int accumulated_x = 0;
 	static int accumulated_y = 0;
-	accumulated_x += relx;
-	accumulated_y += rely;
-	
 	if (right && !left && !middle) {
+		accumulated_y += rely;
 		int distance = accumulated_y / ZOOM_SENSITIVITY;
 		if (distance != 0) {
 			accumulated_y -= distance * ZOOM_SENSITIVITY;
 			OnZoom(-distance);
 		}
 	} else {
-		accumulated_x = 0;
 		accumulated_y = 0;
 	}
 	
@@ -50,6 +45,12 @@ Canvas::OnPan(int relx, int rely)
 void
 Canvas::OnZoom(int change)
 {
-	// TODO: Centre around the current view
-	SetScale(GetScale() + change);
+	int old_scale = GetScale();
+	int new_scale = old_scale + change;
+	
+	if (SetScale(new_scale)) {
+		// Centre view
+		SetOffsetX((GetOffsetX() * new_scale) / old_scale);
+		SetOffsetY((GetOffsetY() * new_scale) / old_scale);
+	}
 } // Canvas::OnZoom
