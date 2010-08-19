@@ -2,7 +2,7 @@
 #define GRID_H
 
 #define GRID_MINOR_MINIMUM_SCALE 3
-#define GRID_MAJOR_INTERVAL 5
+#define GRID_MAJOR_INTERVAL 4
 
 #include <SDL.h>
 #include <SDL_gfxPrimitives.h>

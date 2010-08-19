@@ -19,9 +19,9 @@ BlitWidget(parent, surf)
 	// XXX: Testing...
 	
 	int x, y;
-	for (x = 0; x < 10; x++) {
-		for (y = 0; y < 10; y++) {
-			TestElement *element = new TestElement(x*15, y*10);
+	for (x = 0; x < 100; x++) {
+		for (y = 0; y < 100; y++) {
+			Selectable *element = new XORGate(x*12, y*8);
 			elements.push_back(element);
 		}
 	}

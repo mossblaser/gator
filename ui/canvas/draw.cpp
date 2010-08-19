@@ -25,7 +25,13 @@ Canvas::Draw(void)
 	for (element = elements.begin();
 	     element != elements.end();
 	     ++element) {
-		(*element)->Draw(this);
+		int x1 = (*element)->GetX();
+		int x2 = x1 + (*element)->GetWidth();
+		int y1 = (*element)->GetY();
+		int y2 = y1 + (*element)->GetHeight();
+		
+		if (IsRectOnScreen(x1, y1, x2, y2))
+			(*element)->Draw(this);
 	}
 	
 	NeedsRedraw(true);

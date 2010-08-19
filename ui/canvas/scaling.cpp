@@ -96,13 +96,13 @@ Canvas::SY(int y)
 
 
 const bool
-Canvas::RectOnScreen(int x1, int y1, int x2, int y2)
+Canvas::IsRectOnScreen(int x1, int y1, int x2, int y2)
 {
 	// Get the screen boundaries
-	int t = GetY();
-	int b = t + GetHeight();
-	int l = GetX();
-	int r = l + GetWidth();
+	int t = SY(GetY());
+	int b = SY(GetY() + GetHeight());
+	int l = SX(GetX());
+	int r = SX(GetX() + GetWidth());
 	
 	bool inside_x = (x1 >= l && x1 < r)    // x1 in width
 	                || (x2 >= l && x2 < r) // x2 in width
@@ -119,4 +119,4 @@ Canvas::RectOnScreen(int x1, int y1, int x2, int y2)
 	                || (y2 < b && y1 > b); // ditto
 	
 	return inside_x && inside_y;
-} // Canvas::RectOnScreen
+} // Canvas::IsRectOnScreen

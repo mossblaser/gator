@@ -13,7 +13,9 @@
 #include "ui/grid.h"
 #include "ui/element.h"
 #include "ui/selectable.h"
-#include "ui/elements/test.h"
+#include "ui/elements/and.h"
+#include "ui/elements/or.h"
+#include "ui/elements/xor.h"
 
 namespace gator {
 	namespace ui {
@@ -81,7 +83,7 @@ namespace gator {
 				
 				/** Check if a rectangle would be visible anywhere on the screen. (Not
 				 * grid coordinates). */
-				const bool RectOnScreen(int x1, int y1, int x2, int y2);
+				const bool IsRectOnScreen(int x1, int y1, int x2, int y2);
 			
 			public:
 				virtual bool OnButtonDown(int x, int y,
