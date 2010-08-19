@@ -3,8 +3,7 @@
 using namespace gator::ui;
 
 TestElement::TestElement(int x, int y) :
-Element(x, y, 10, 5),
-Selectable()
+Selectable(x, y, 10, 5)
 {
 	// Do nothing...
 } // TestElement::TestElement

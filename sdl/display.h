@@ -41,6 +41,10 @@ namespace gator {
 				
 			protected:
 				void OnQuit(void);
+				virtual void OnButtonDown(int x, int y,
+				                          bool left, bool right, bool middle);
+				virtual void OnButtonUp(int x, int y,
+				                        bool left, bool right, bool middle);
 				virtual void OnMouseMove(int x, int y, int relx, int rely,
 				                         bool left,bool right,bool middle);
 			

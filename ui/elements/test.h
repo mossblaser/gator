@@ -11,7 +11,7 @@
 namespace gator {
 	namespace ui {
 		
-		class TestElement : public Element, public Selectable
+		class TestElement : public Selectable
 		{
 			public:
 				TestElement(int x, int y);

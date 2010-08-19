@@ -30,7 +30,7 @@ namespace gator {
 				Pallet *pallet;
 				Grid *grid;
 				
-				std::vector<Element*> elements;
+				std::vector<Selectable*> elements;
 			
 			public:
 				Canvas(Widget *parent, SDL_Surface *surf);
@@ -84,11 +84,22 @@ namespace gator {
 				const bool RectOnScreen(int x1, int y1, int x2, int y2);
 			
 			public:
+				virtual bool OnButtonDown(int x, int y,
+				                          bool left, bool right, bool middle);
+				virtual bool OnButtonUp(int x, int y,
+				                        bool left, bool right, bool middle);
 				virtual bool OnMouseMove (int x, int y, int relx, int rely,
 				                          bool left, bool right, bool middle);
-				
+			
+			private:
+				bool drag_started;
+			
+			public:
 				virtual void OnPan(int relx, int rely);
 				virtual void OnZoom(int change);
+				virtual void OnSelect(int x, int y, bool drag);
+				virtual void OnDrag(int relx, int rely, bool end_drag);
+				
 		}; // class Canvas
 		
 	} // namespace ui

@@ -3,7 +3,8 @@
 using namespace gator::ui;
 
 
-Selectable::Selectable(void)
+Selectable::Selectable(int x, int y, int width, int height) :
+Element(x,y,width,height)
 {
 	selected = false;
 } // Selectable::Selectable

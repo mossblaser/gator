@@ -11,6 +11,38 @@ Display::OnQuit(void)
 
 
 void
+Display::OnButtonDown(int x, int y,
+                      bool left, bool right, bool middle)
+{
+	std::vector<gator::ui::Widget*>::iterator widget;
+	for (widget = widgets.begin();
+	     widget != widgets.end();
+	     ++widget) {
+		if ((*widget)->OnButtonDown(x - (*widget)->GetX(), y - (*widget)->GetY(),
+		                            left, right, middle))
+			return;
+	}
+} // Display::OnButtonDown
+
+
+
+void
+Display::OnButtonUp(int x, int y,
+                      bool left, bool right, bool middle)
+{
+	std::vector<gator::ui::Widget*>::iterator widget;
+	for (widget = widgets.begin();
+	     widget != widgets.end();
+	     ++widget) {
+		if ((*widget)->OnButtonUp(x - (*widget)->GetX(), y - (*widget)->GetY(),
+		                          left, right, middle))
+			return;
+	}
+} // Display::OnButtonUp
+
+
+
+void
 Display::OnMouseMove(int x, int y, int relx, int rely,
                      bool left, bool right, bool middle)
 {
@@ -18,7 +50,8 @@ Display::OnMouseMove(int x, int y, int relx, int rely,
 	for (widget = widgets.begin();
 	     widget != widgets.end();
 	     ++widget) {
-		if ((*widget)->OnMouseMove(x, y, relx, rely, left, right, middle))
+		if ((*widget)->OnMouseMove(x - (*widget)->GetX(), y - (*widget)->GetY(),
+		                           relx, rely, left, right, middle))
 			return;
 	}
 } // Display::OnMouseMove

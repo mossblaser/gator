@@ -1,16 +1,18 @@
 #ifndef SELECTABLE_H
 #define SELECTABLE_H
 
+#include "ui/element.h"
+
 namespace gator {
 	namespace ui {
 		
-		class Selectable
+		class Selectable : public Element
 		{
 			private:
 				bool selected;
 			
 			public:
-				Selectable(void);
+				Selectable(int x, int y, int width, int height);
 				virtual ~Selectable(void);
 				
 				virtual bool IsSelected(void);

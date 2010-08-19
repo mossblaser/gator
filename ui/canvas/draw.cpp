@@ -21,7 +21,7 @@ Canvas::Draw(void)
 	
 	grid->Draw(this);
 	
-	std::vector<Element*>::iterator element;
+	std::vector<Selectable*>::iterator element;
 	for (element = elements.begin();
 	     element != elements.end();
 	     ++element) {

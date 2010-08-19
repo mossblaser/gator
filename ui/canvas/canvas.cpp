@@ -13,13 +13,18 @@ BlitWidget(parent, surf)
 	grid = new Grid();
 	pallet = new Pallet();
 	
+	drag_started = false;
+	
 	
 	// XXX: Testing...
 	
 	int x, y;
-	for (x = 0; x < 100; x++)
-		for (y = 0; y < 100; y++)
-			elements.push_back(new TestElement(x*10,y*5));
+	for (x = 0; x < 10; x++) {
+		for (y = 0; y < 10; y++) {
+			TestElement *element = new TestElement(x*15, y*10);
+			elements.push_back(element);
+		}
+	}
 	
 	// XXX: End Testing...
 } // Canvas::Canvas
@@ -28,7 +33,7 @@ BlitWidget(parent, surf)
 Canvas::~Canvas(void)
 {
 	// XXX Testing-related (possibly just for now)
-	std::vector<Element*>::iterator element;
+	std::vector<Selectable*>::iterator element;
 	for (element = elements.begin();
 	     element != elements.end();
 	     ++element) {
