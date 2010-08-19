@@ -92,6 +92,7 @@ namespace gator {
 				                        bool left, bool right, bool middle);
 				virtual bool OnMouseMove (int x, int y, int relx, int rely,
 				                          bool left, bool right, bool middle);
+				virtual bool OnKeyUp(SDLKey key, SDLMod mod, Uint16 unicode);
 			
 			private:
 				bool drag_started;
@@ -100,7 +101,9 @@ namespace gator {
 				virtual void OnPan(int relx, int rely);
 				virtual void OnZoom(int change);
 				virtual void OnSelect(int x, int y, bool drag);
-				virtual void OnDrag(int relx, int rely, bool end_drag);
+				virtual void OnDrag(int x, int y,
+				                    int relx, int rely, bool end_drag);
+				virtual bool OnDelete(void);
 				
 		}; // class Canvas
 		

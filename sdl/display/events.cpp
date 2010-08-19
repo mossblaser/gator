@@ -25,7 +25,6 @@ Display::OnButtonDown(int x, int y,
 } // Display::OnButtonDown
 
 
-
 void
 Display::OnButtonUp(int x, int y,
                       bool left, bool right, bool middle)
@@ -41,7 +40,6 @@ Display::OnButtonUp(int x, int y,
 } // Display::OnButtonUp
 
 
-
 void
 Display::OnMouseMove(int x, int y, int relx, int rely,
                      bool left, bool right, bool middle)
@@ -52,6 +50,19 @@ Display::OnMouseMove(int x, int y, int relx, int rely,
 	     ++widget) {
 		if ((*widget)->OnMouseMove(x - (*widget)->GetX(), y - (*widget)->GetY(),
 		                           relx, rely, left, right, middle))
+			return;
+	}
+} // Display::OnMouseMove
+
+
+void
+Display::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode)
+{
+	std::vector<gator::ui::Widget*>::iterator widget;
+	for (widget = widgets.begin();
+	     widget != widgets.end();
+	     ++widget) {
+		if ((*widget)->OnKeyUp(sym, mod, unicode))
 			return;
 	}
 } // Display::OnMouseMove

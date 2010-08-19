@@ -50,7 +50,7 @@ Canvas::OnSelect(int x, int y, bool drag)
 			for (element = elements.begin(); element != elements.end(); ++element) {
 				if ((*element)->IsAtPoint(grid_x, grid_y)) {
 					(*element)->SetSelected(true);
-				} else {
+				} else if (!shift) {
 					(*element)->SetSelected(false);
 				}
 			}
@@ -60,8 +60,9 @@ Canvas::OnSelect(int x, int y, bool drag)
 
 
 void
-Canvas::OnDrag(int relx, int rely, bool end_drag)
+Canvas::OnDrag(int x, int y, int relx, int rely, bool end_drag)
 {
+	static bool drag_started = false;
 	static int accx = 0;
 	static int accy = 0;
 	
@@ -73,6 +74,9 @@ Canvas::OnDrag(int relx, int rely, bool end_drag)
 		int movy = accy / GetScale();
 		
 		if (movx || movy) {
+			if (!drag_started)
+				OnSelect(x - accx, y - accy, true);
+			
 			accx -= movx * GetScale();
 			accy -= movy * GetScale();
 			
@@ -84,10 +88,37 @@ Canvas::OnDrag(int relx, int rely, bool end_drag)
 					(*element)->Move(movx, movy);
 				}
 			}
+			drag_started = true;
 		}
-		
 	} else {
+		if (!drag_started) {
+			OnSelect(x, y, false);
+		}
+		drag_started = false;
 		accx = 0;
 		accy = 0;
 	}
 } // Canvas::OnDrag
+
+
+bool
+Canvas::OnDelete(void)
+{
+	bool deleted = false;
+	
+	std::vector<Selectable*>::iterator element;
+	for (element = elements.begin(); element != elements.end(); ++element) {
+		while(true) {
+			Selectable *elem = *element;
+			if (elem->IsSelected()) {
+				element = elements.erase(element);
+				delete elem;
+				deleted = true;
+				continue;
+			}
+			break;
+		}
+	}
+	
+	return deleted;
+} // Canvas::OnDelete

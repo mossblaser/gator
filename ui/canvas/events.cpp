@@ -14,12 +14,8 @@ bool
 Canvas::OnButtonUp(int x, int y, bool left, bool right, bool middle)
 {
 	if (left && !right && !middle) {
-		if (!drag_started)
-			OnSelect(x, y, false);
-		
-		// End drag
-		drag_started = false;
-		OnDrag(0, 0, true);
+		// End Drag
+		OnDrag(x, y, 0, 0, true);
 		return true;
 	}
 	
@@ -57,11 +53,7 @@ Canvas::OnMouseMove(int x, int y, int relx, int rely,
 	
 	// Drag/Select on drag with left button
 	if (left && !right && !middle) {
-		if (!drag_started)
-			OnSelect(x, y, true);
-		
-		OnDrag(relx, rely, false);
-		drag_started = true;
+		OnDrag(x, y, relx, rely, false);
 		return true;
 	}
 	
@@ -90,3 +82,14 @@ Canvas::OnZoom(int change)
 		SetOffsetY((GetOffsetY() * new_scale) / old_scale);
 	}
 } // Canvas::OnZoom
+
+
+bool
+Canvas::OnKeyUp(SDLKey key, SDLMod mod, Uint16 unicode)
+{
+	if (key == SDLK_DELETE && OnDelete()) {
+		return true;
+	}
+	
+	return false;
+} // Canvas::OnKeyUp

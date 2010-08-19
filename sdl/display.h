@@ -47,6 +47,7 @@ namespace gator {
 				                        bool left, bool right, bool middle);
 				virtual void OnMouseMove(int x, int y, int relx, int rely,
 				                         bool left,bool right,bool middle);
+				virtual void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
 			
 		}; // class Display
 		
