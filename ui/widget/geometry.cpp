@@ -12,3 +12,5 @@ void Widget::SetX(int x)           {this->x      = x;}
 void Widget::SetY(int y)           {this->y      = y;}
 void Widget::SetWidth(int width)   {this->width  = width;}
 void Widget::SetHeight(int height) {this->height = height;}
+void Widget::SetSize(int w, int h) {width = w; height = h;}
+

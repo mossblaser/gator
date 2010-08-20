@@ -47,3 +47,6 @@ Display::Main(void)
 	return 0;
 } // Display::Main
 
+
+int Display::GetWidth(void) {return width;}
+int Display::GetHeight(void) {return height;}

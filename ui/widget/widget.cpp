@@ -38,6 +38,13 @@ Widget::GetSurf(void)
 }
 
 
+void
+Widget::SetSurf(SDL_Surface *surf)
+{
+	this->surf = surf;
+}
+
+
 Pallet *
 Widget::GetPallet(void)
 {

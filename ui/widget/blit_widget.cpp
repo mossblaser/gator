@@ -8,17 +8,6 @@ Widget(parent, NULL),
 target_surf(surf)
 {
 	this->surf = NULL;
-	
-	SDL_Surface *tmp_surf = SDL_CreateRGBSurface(SDL_HWSURFACE,
-	                                             VWIDTH, VHEIGHT, VDEPTH,
-	                                             0,0,0,0);
-	if (tmp_surf) {
-		this->surf = SDL_DisplayFormat(tmp_surf);
-		SDL_FreeSurface(tmp_surf);
-	}
-	
-	SetWidth(VWIDTH);
-	SetHeight(VHEIGHT);
 } // BlitWidget::BlitWidget
 
 
@@ -27,6 +16,29 @@ BlitWidget::~BlitWidget(void)
 	if (GetSurf())
 		SDL_FreeSurface(GetSurf());
 } // BlitWidget::~BlitWidget
+
+
+void
+BlitWidget::SetupScreen(void)
+{
+	if (GetSurf())
+		SDL_FreeSurface(GetSurf());
+	
+	SDL_Surface *tmp_surf = SDL_CreateRGBSurface(SDL_HWSURFACE,
+	                                             GetWidth(), GetHeight(), VDEPTH,
+	                                             0,0,0,0);
+	if (tmp_surf) {
+		this->surf = SDL_DisplayFormat(tmp_surf);
+		SDL_FreeSurface(tmp_surf);
+	}
+} // BlitWidget::SetupScreen
+
+
+void
+BlitWidget::SetSurf(SDL_Surface *surf)
+{
+	this->target_surf = surf;
+}
 
 
 SDL_Surface *
@@ -61,3 +73,8 @@ BlitWidget::Draw(void)
 	
 	return true;
 } // BlitWidget::Draw
+
+
+void BlitWidget::SetWidth(int w)  {Widget::SetWidth(w); SetupScreen();}
+void BlitWidget::SetHeight(int h){Widget::SetHeight(h); SetupScreen();}
+void BlitWidget::SetSize(int w, int h){Widget::SetSize(w, h); SetupScreen();}

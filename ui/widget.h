@@ -36,6 +36,9 @@ namespace gator {
 				/** Get the pallet for this widget. */
 				virtual Pallet *GetPallet(void);
 				
+				/** Set the surface for this widget. */
+				virtual void SetSurf(SDL_Surface *surf);
+				
 				/** Get the surface for this widget. */
 				virtual SDL_Surface *GetSurf(void);
 				
@@ -78,6 +81,9 @@ namespace gator {
 				
 				/** Set the height of the widget */
 				virtual void SetHeight(int height);
+				
+				/** Set the width and height */
+				virtual void SetSize(int width, int height);
 			
 			public:
 				/**

@@ -9,7 +9,11 @@ Display::OnLoop(void)
 	static int frame = 0;
 	
 	if (((frame ++) % 100) == 0) {
-		printf("%d fps\n", (100 * 1000) / (SDL_GetTicks() - ticks));
+		char caption[20];
+		snprintf(caption, 19,
+		         "Gator (%d fps)", (100 * 1000) / (SDL_GetTicks() - ticks));
+		SDL_WM_SetCaption(caption, NULL);
+		
 		ticks = SDL_GetTicks();
 	}
 } // Display::OnLoop

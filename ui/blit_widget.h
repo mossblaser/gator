@@ -15,15 +15,22 @@ namespace gator {
 			private:
 				SDL_Surface *surf;
 				SDL_Surface *target_surf;
+				
+				void SetupScreen(void);
 			
 			public:
 				BlitWidget(Widget *parent, SDL_Surface *surf);
 				virtual ~BlitWidget(void);
 				
+				virtual void SetSurf(SDL_Surface *surf);
 				virtual SDL_Surface *GetSurf(void);
 				virtual SDL_Surface *GetTargetSurf(void);
 				
 				virtual bool Draw(void);
+				
+				virtual void SetWidth(int width);
+				virtual void SetHeight(int height);
+				virtual void SetSize(int width, int height);
 		}; // class BlitWidget
 		
 	} // namespace ui

@@ -22,16 +22,20 @@ namespace gator {
 		class Display : public EventHandler
 		{
 			private:
+				int width, height;
 				SDL_Surface *display;
-				
 				std::vector<gator::ui::Widget*> widgets;
-				
 				bool running;
+				
+				SDL_Surface *SetVideoMode(void);
 			
 			public:
 				Display(void);
 				virtual ~Display(void);
 				int Main(void);
+				
+				int GetWidth(void);
+				int GetHeight(void);
 				
 			public:
 				bool OnInit(void);
@@ -48,6 +52,7 @@ namespace gator {
 				virtual void OnMouseMove(int x, int y, int relx, int rely,
 				                         bool left,bool right,bool middle);
 				virtual void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
+				virtual void OnResize(int new_width, int new_height);
 			
 		}; // class Display
 		
