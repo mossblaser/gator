@@ -40,6 +40,6 @@ int Element::GetHeight(void) {return height;}
 bool
 Element::IsAtPoint(int x, int y)
 {
-	return (x >= GetX() && x <= (GetX() + GetWidth()))
-	       && (y >= GetY() && y <= (GetY() + GetHeight()));
+	return (x > GetX() && x <= (GetX() + GetWidth()))
+	       && (y > GetY() && y <= (GetY() + GetHeight()));
 } // Element::IsAtPoint
