@@ -12,17 +12,17 @@ void EventHandler::OnEvent(SDL_Event* Event) {
 			switch(Event->active.state) {
 				case SDL_APPMOUSEFOCUS: {
 					if ( Event->active.gain )   OnMouseFocus();
-					else				OnMouseBlur();
+					else                        OnMouseBlur();
 					break;
 				}
 				case SDL_APPINPUTFOCUS: {
 					if ( Event->active.gain )   OnInputFocus();
-					else				OnInputBlur();
+					else                        OnInputBlur();
 					break;
 				}
 				case SDL_APPACTIVE: {
 					if ( Event->active.gain )   OnRestore();
-					else				OnMinimize();
+					else                        OnMinimize();
 					break;
 				}
 			}
