@@ -6,6 +6,8 @@ using namespace gator::ui;
 bool
 Canvas::OnButtonDown(int x, int y, bool left, bool right, bool middle)
 {
+	x -= GetX();
+	y -= GetY();
 	return false;
 } // Canvas::OnButtonDown
 
@@ -13,6 +15,8 @@ Canvas::OnButtonDown(int x, int y, bool left, bool right, bool middle)
 bool
 Canvas::OnButtonUp(int x, int y, bool left, bool right, bool middle)
 {
+	x -= GetX();
+	y -= GetY();
 	if (left && !right && !middle) {
 		// End Drag
 		OnDrag(x, y, 0, 0, true);
@@ -27,6 +31,11 @@ bool
 Canvas::OnMouseMove(int x, int y, int relx, int rely,
                     bool left, bool right, bool middle)
 {
+	x -= GetX();
+	y -= GetY();
+	
+	printf("(%d, %d)\n", SX(x), SY(y));
+	
 	// Do nothing if mouse not over this widget
 	if (x >= GetWidth() || y >= GetHeight())
 		return false;

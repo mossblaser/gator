@@ -81,7 +81,7 @@ Canvas::SX(int x)
 	// De-centralise the coordinate
 	x -= GetOffsetX() + (GetWidth() / 2);
 	
-	return (x + (GetScale() / 2)) / GetScale();
+	return (x + ((x<0?-1:1) * (GetScale() / 2))) / GetScale();
 } // Canvas::SX
 
 
@@ -91,7 +91,7 @@ Canvas::SY(int y)
 	// De-centralise the coordinate
 	y -= GetOffsetY() + (GetHeight() / 2);
 	
-	return (y + (GetScale() / 2)) / GetScale();
+	return (y + ((y<0?-1:1) * GetScale() / 2)) / GetScale();
 } // Canvas::SY
 
 
@@ -99,10 +99,10 @@ const bool
 Canvas::IsRectOnScreen(int x1, int y1, int x2, int y2)
 {
 	// Get the screen boundaries
-	int t = SY(GetY());
-	int b = SY(GetY() + GetHeight());
-	int l = SX(GetX());
-	int r = SX(GetX() + GetWidth());
+	int t = SY(0);
+	int b = SY(GetHeight());
+	int l = SX(0);
+	int r = SX(GetWidth());
 	
 	bool inside_x = (x1 >= l && x1 < r)    // x1 in width
 	                || (x2 >= l && x2 < r) // x2 in width

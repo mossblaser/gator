@@ -18,8 +18,7 @@ Display::OnButtonDown(int x, int y,
 	for (widget = widgets.begin();
 	     widget != widgets.end();
 	     ++widget) {
-		if ((*widget)->OnButtonDown(x - (*widget)->GetX(), y - (*widget)->GetY(),
-		                            left, right, middle))
+		if ((*widget)->OnButtonDown(x, y, left, right, middle))
 			return;
 	}
 } // Display::OnButtonDown
@@ -33,8 +32,7 @@ Display::OnButtonUp(int x, int y,
 	for (widget = widgets.begin();
 	     widget != widgets.end();
 	     ++widget) {
-		if ((*widget)->OnButtonUp(x - (*widget)->GetX(), y - (*widget)->GetY(),
-		                          left, right, middle))
+		if ((*widget)->OnButtonUp(x, y, left, right, middle))
 			return;
 	}
 } // Display::OnButtonUp
@@ -48,8 +46,7 @@ Display::OnMouseMove(int x, int y, int relx, int rely,
 	for (widget = widgets.begin();
 	     widget != widgets.end();
 	     ++widget) {
-		if ((*widget)->OnMouseMove(x - (*widget)->GetX(), y - (*widget)->GetY(),
-		                           relx, rely, left, right, middle))
+		if ((*widget)->OnMouseMove(x, y, relx, rely, left, right, middle))
 			return;
 	}
 } // Display::OnMouseMove
@@ -82,7 +79,7 @@ Display::OnResize(int new_width, int new_height)
 	for (widget = widgets.begin();
 	     widget != widgets.end();
 	     ++widget) {
-		(*widget)->SetSize(new_width, new_height);
+		(*widget)->SetSize(new_width-200, new_height-200);
 		(*widget)->SetSurf(display);
 	}
 } // Display::OnResize
