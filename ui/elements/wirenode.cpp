@@ -32,115 +32,66 @@ WireNode::Draw(Canvas *canvas)
 	int x = canvas->XS(this->x);
 	int y = canvas->YS(this->y);
 	
+	if (input != NULL) {
+		lineColor(surf, x, y,
+		          canvas->XS(input->x), canvas->YS(input->y), colour);
+	}
+	
 	int num_outputs = 0;
 	std::vector<WireNode*>::iterator node;
 	for (node = outputs.begin(); node != outputs.end(); ++node) {
 		WireNode *output = (*node);
-		num_outputs++;
-		
-		lineColor(surf, x, y,
-		          canvas->XS(output->x), canvas->YS(output->y), colour);
-	}
-	
-	if (num_outputs > 1) {
-		filledCircleColor(surf, x, y, canvas->GetScale()/2, colour);
+		if (++num_outputs > 1) {
+			filledCircleColor(surf, x, y, canvas->GetScale()/2, colour);
+			break;
+		}
 	}
 	
 	return true;
 } // WireNode::Draw
 
 
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
+
+
 int
 WireNode::GetX(void)
 {
-	// XXX: Borked
-	return this->x;
-	int x;
-	int min = this->x;
-	
-	if (input) {
-		x = input->GetX();
-		if (x < min) min = x;
-	}
-	
-	std::vector<WireNode*>::iterator node;
-	for (node = outputs.begin(); node != outputs.end(); ++node) {
-		x = (*node)->GetX();
-		if (x < min) min = x;
-	}
-	
-	return min;
+	if (input != NULL)
+		return MIN(this->x, input->x);
+	else
+		return this->x;
 } // WireNode::GetX
 
 
 int
 WireNode::GetY(void)
 {
-	// XXX: Borked
-	return this->y;
-	int y;
-	int min = this->y;
-	
-	if (input) {
-		y = input->GetY();
-		if (y < min) min = y;
-	}
-	
-	std::vector<WireNode*>::iterator node;
-	for (node = outputs.begin(); node != outputs.end(); ++node) {
-		y = (*node)->GetY();
-		if (y < min) min = y;
-	}
-	
-	return min;
+	if (input != NULL)
+		return MIN(this->y, input->y);
+	else
+		return this->y;
 } // WireNode::GetY
 
 
 int
 WireNode::GetWidth(void)
 {
-	// XXX: Borked
-	return 0;
-	int node_r;
-	int l = GetX();
-	int r = this->x;
-	
-	if (input) {
-		node_r = input->GetWidth() + input->GetX();
-		if (node_r > r) r = node_r;
-	}
-	
-	std::vector<WireNode*>::iterator node;
-	for (node = outputs.begin(); node != outputs.end(); ++node) {
-		node_r = (*node)->GetWidth() + (*node)->GetX();
-		if (node_r > r) r = node_r;
-	}
-	
-	return r - l;
+	if (input != NULL)
+		return abs(this->x - input->x);
+	else
+		return 0;
 } // WireNode::GetWidth
 
 
 int
 WireNode::GetHeight(void)
 {
-	// XXX: Borked
-	return 0;
-	int node_b;
-	int t = GetY();
-	int b = this->y;
-	
-	if (input) {
-		node_b = input->GetHeight() + input->GetY();
-		if (node_b > b) b = node_b;
-	}
-	
-	std::vector<WireNode*>::iterator node;
-	for (node = outputs.begin(); node != outputs.end(); ++node) {
-		node_b = (*node)->GetHeight() + (*node)->GetY();
-		if (node_b > b) b = node_b;
-	}
-	
-	return b - t;
+	if (input != NULL)
+		return abs(this->y - input->y);
+	else
+		return 0;
 } // WireNode::GetHeight
 
 
@@ -171,3 +122,28 @@ WireNode::DisconnectOutput(WireNode *output)
 		}
 	}
 } // WireNode::DisconnectOutput
+
+
+bool
+WireNode::IsAtPoint(int x, int y)
+{
+	if (input == NULL)
+		return false;
+	
+	int l = (input->GetX() < this->GetX()) ? input->GetX() : this->GetX();
+	int r = (input->GetX() > this->GetX()) ? input->GetX() : this->GetX();
+	int t = (input->GetY() < this->GetY()) ? input->GetY() : this->GetY();
+	int b = (input->GetY() > this->GetY()) ? input->GetY() : this->GetY();
+	
+	if (x < l || x > r || y < t || y > b) {
+		printf("no: outside rect %d, %d: l%d, r%d, t%d, b%d\n", x, y, l,r,t,b);
+		return false;
+	}
+	
+	if (l == r || t == b) {
+		printf("yes: 0 W/H\n");
+		return true;
+	}
+	
+	return false;
+} // WireNode::IsAtPoint
