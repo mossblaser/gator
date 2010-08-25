@@ -232,3 +232,11 @@ WireNode::IsNodeAtPoint(int x, int y)
 } // WireNode::IsNodeAtPoint
 
 
+void
+WireNode::Move(int relx, int rely)
+{
+	x += relx;
+	y += rely;
+} // WireNode::Move
+
+
