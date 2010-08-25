@@ -32,6 +32,7 @@ namespace gator {
 				virtual int GetHeight(void);
 				
 				virtual bool IsAtPoint(int x, int y);
+				virtual bool IsInRect(int x1, int y1, int x2, int y2);
 				
 				virtual bool Draw(Canvas *canvas) = 0;
 		}; // class Element

@@ -43,3 +43,16 @@ Element::IsAtPoint(int x, int y)
 	return (x >= GetX() && x <= (GetX() + GetWidth()))
 	       && (y >= GetY() && y <= (GetY() + GetHeight()));
 } // Element::IsAtPoint
+
+
+bool
+Element::IsInRect(int x1, int y1, int x2, int y2)
+{
+	int l = GetX();
+	int r = l + GetWidth();
+	int t = GetY();
+	int b = t + GetHeight();
+	
+	return (l >= x1 && l <= x2 && r >= x1 && r <= x2
+	        && t >= y1 && t <= y2 && b >= y1 && b <= y2);
+} // Element::IsInRect

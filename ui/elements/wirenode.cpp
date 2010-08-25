@@ -280,3 +280,10 @@ WireNode::ToggleSelection(int x, int y)
 	// Do nothing
 	return;
 } // WireNode::ToggleSelection
+
+
+bool
+WireNode::IsInRect(int x1, int y1, int x2, int y2)
+{
+	return (x >= x1 && x <= x2 && y >= y1 && y <= y2);
+} // WireNode::IsInRect

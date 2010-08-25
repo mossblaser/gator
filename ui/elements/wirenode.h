@@ -48,6 +48,8 @@ namespace gator {
 				
 				/** If the user clicked here, should it logically select this node? */
 				virtual bool IsAtPoint(int x, int y);
+				
+				virtual bool IsInRect(int x1, int y1, int x2, int y2);
 			
 			private:
 				/** Does this node literally lie on these coordinates? */
