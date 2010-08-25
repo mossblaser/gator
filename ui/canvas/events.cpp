@@ -34,8 +34,6 @@ Canvas::OnMouseMove(int x, int y, int relx, int rely,
 	x -= GetX();
 	y -= GetY();
 	
-	printf("(%d, %d)\n", SX(x), SY(y));
-	
 	// Do nothing if mouse not over this widget
 	if (x >= GetWidth() || y >= GetHeight())
 		return false;
@@ -96,7 +94,20 @@ Canvas::OnZoom(int change)
 bool
 Canvas::OnKeyUp(SDLKey key, SDLMod mod, Uint16 unicode)
 {
-	if (key == SDLK_DELETE && OnDelete()) {
+	if (key == SDLK_DELETE
+	    && mod == KMOD_NONE
+	    && OnDelete()) {
+		return true;
+	}
+	
+	if (key == SDLK_a
+	    && !(mod & ~(KMOD_LSHIFT | KMOD_RSHIFT | KMOD_LCTRL | KMOD_RCTRL))
+	    && mod & (KMOD_LCTRL | KMOD_RCTRL)) {
+		if (!(mod & (KMOD_LSHIFT | KMOD_RSHIFT))) {
+			SelectAll();
+		} else {
+			SelectNone();
+		}
 		return true;
 	}
 	

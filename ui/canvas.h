@@ -13,6 +13,8 @@
 #include "ui/grid.h"
 #include "ui/element.h"
 #include "ui/selectable.h"
+
+// XXX: For testing...
 #include "ui/elements/and.h"
 #include "ui/elements/or.h"
 #include "ui/elements/nor.h"
@@ -31,16 +33,14 @@ namespace gator {
 		 */
 		class Canvas : public BlitWidget {
 			protected:
-				Pallet *pallet;
 				Grid *grid;
-				
+			
 				std::vector<Selectable*> elements;
 			
 			public:
 				Canvas(Widget *parent, SDL_Surface *surf);
 				~Canvas(void);
 				
-				virtual Pallet *GetPallet(void);
 				virtual bool Draw(void);
 			
 			protected:
@@ -102,10 +102,14 @@ namespace gator {
 			public:
 				virtual void OnPan(int relx, int rely);
 				virtual void OnZoom(int change);
-				virtual void OnSelect(int x, int y, bool drag);
 				virtual void OnDrag(int x, int y,
 				                    int relx, int rely, bool end_drag);
 				virtual bool OnDelete(void);
+			
+			public:
+				virtual void OnSelect(int x, int y, bool drag);
+				virtual void SelectAll(void);
+				virtual void SelectNone(void);
 				
 		}; // class Canvas
 		

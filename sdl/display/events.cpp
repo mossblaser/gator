@@ -55,6 +55,9 @@ Display::OnMouseMove(int x, int y, int relx, int rely,
 void
 Display::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode)
 {
+	// Ignore numlock/capslock
+	mod = (SDLMod) (mod & ~(KMOD_NUM | KMOD_CAPS));
+	
 	std::vector<gator::ui::Widget*>::iterator widget;
 	for (widget = widgets.begin();
 	     widget != widgets.end();

@@ -127,3 +127,23 @@ Canvas::OnDelete(void)
 	
 	return deleted;
 } // Canvas::OnDelete
+
+
+void
+Canvas::SelectAll(void)
+{
+	std::vector<Selectable*>::iterator element;
+	for (element = elements.begin(); element != elements.end(); ++element) {
+		(*element)->SetSelected(true);
+	}
+} // Canvas::SelectAll
+
+
+void
+Canvas::SelectNone(void)
+{
+	std::vector<Selectable*>::iterator element;
+	for (element = elements.begin(); element != elements.end(); ++element) {
+		(*element)->SetSelected(false);
+	}
+} // Canvas::SelectNone
