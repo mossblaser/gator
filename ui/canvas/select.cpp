@@ -24,7 +24,7 @@ Canvas::OnSelect(int x, int y, bool drag)
 				if (!shift)
 					(*element)->SetSelected(true);
 				else
-					(*element)->SetSelected(!(*element)->IsSelected());
+					(*element)->ToggleSelection(grid_x, grid_y);
 			} else {
 				if (!shift)
 					(*element)->SetSelected(false);

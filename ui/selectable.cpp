@@ -29,3 +29,9 @@ Selectable::SetSelected(bool state)
 	selected = state;
 } // Selectable::SetSelected
 
+
+void
+Selectable::ToggleSelection(int x, int y)
+{
+	SetSelected(!IsSelected());
+} // Selectable::ToggleSelection

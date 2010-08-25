@@ -240,3 +240,26 @@ WireNode::Move(int relx, int rely)
 } // WireNode::Move
 
 
+void
+WireNode::ToggleSelection(int x, int y)
+{
+	if (IsNodeAtPoint(x, y)) {
+		Selectable::ToggleSelection(x, y);
+		return;
+	}
+	
+	if (input && IsPointOnInputLine(x, y)) {
+		if (input->IsSelected() == this->IsSelected()) {
+			this->Selectable::ToggleSelection(x, y);
+			input->SetSelected(this->IsSelected());
+			return;
+		} else {
+			this->SetSelected(true);
+			input->SetSelected(true);
+			return;
+		}
+	}
+	
+	// Do nothing
+	return;
+} // WireNode::ToggleSelection

@@ -17,6 +17,7 @@ namespace gator {
 				
 				virtual bool IsSelected(void);
 				virtual void SetSelected(bool state);
+				virtual void ToggleSelection(int x, int y);
 		}; // class Selectable
 		
 	} // namespace ui

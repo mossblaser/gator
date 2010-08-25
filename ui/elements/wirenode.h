@@ -18,6 +18,12 @@ namespace gator {
 		
 		class WireNode : public Selectable
 		{
+			private:
+				WireNode *input;
+				std::vector<WireNode*> outputs;
+				
+				virtual bool HasBlob(void);
+			
 			public:
 				WireNode(int x, int y);
 				virtual ~WireNode(void);
@@ -26,26 +32,28 @@ namespace gator {
 				virtual int GetY(void);
 				virtual int GetWidth(void);
 				virtual int GetHeight(void);
+				virtual void Move(int relx, int rely);
 				
 				virtual bool Draw(Canvas *canvas);
-			
-			private:
-				WireNode *input;
-				std::vector<WireNode*> outputs;
-				
-				virtual bool HasBlob(void);
-			
-			public:
-				virtual bool IsAtPoint(int x, int y);
-			private:
-				virtual bool IsNodeAtPoint(int x, int y);
-				virtual bool IsPointOnInputLine(int x, int y);
 			
 			public:
 				virtual void ConnectInput(WireNode *input);
 				
 				virtual void ConnectOutput(WireNode *output);
 				virtual void DisconnectOutput(WireNode *output);
+			
+			public:
+				virtual void ToggleSelection(int x, int y);
+				
+				/** If the user clicked here, should it logically select this node? */
+				virtual bool IsAtPoint(int x, int y);
+			
+			private:
+				/** Does this node literally lie on these coordinates? */
+				virtual bool IsNodeAtPoint(int x, int y);
+				
+				/** Does the point lie on the input line? */
+				virtual bool IsPointOnInputLine(int x, int y);
 		}; // class WireNode
 		
 	} // namespace ui
