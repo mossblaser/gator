@@ -49,16 +49,29 @@ WireNode::Draw(Canvas *canvas)
 	Uint32 colour = IsSelected() ? pallet->GetWireSel()
 	                             : pallet->GetWire();
 	
+	Uint32 line_colour = IsSelected() && input && input->IsSelected()
+	                     ? pallet->GetWireSel()
+	                     : pallet->GetWire();
+	
 	int x = canvas->XS(this->x);
 	int y = canvas->YS(this->y);
 	
 	if (input != NULL) {
 		lineColor(surf, x, y,
-		          canvas->XS(input->x), canvas->YS(input->y), colour);
+		          canvas->XS(input->x), canvas->YS(input->y), line_colour);
 	}
 	
-	if (HasBlob())
-		filledCircleColor(surf, x, y, canvas->GetScale()/2, colour);
+	int blob_radius = canvas->GetScale() / WIRE_NODE_BLOB_SIZE_DIVISOR;
+	
+	if (HasBlob()) {
+		filledCircleColor(surf, x, y, blob_radius, colour);
+	} else {
+		blob_radius /= 2;
+	}
+	
+	if (IsSelected())
+		circleColor(surf, x, y, blob_radius + WIRE_NODE_SELECT_RING_SPACING,
+		            colour);
 	
 	return true;
 } // WireNode::Draw
@@ -136,12 +149,13 @@ WireNode::DisconnectOutput(WireNode *output)
 bool
 WireNode::IsAtPoint(int x, int y)
 {
-	if (IsPointOnInputLine(x,y))
+	if (IsNodeAtPoint(x,y))
 		return true;
 	
 	if (input != NULL
 	    && !input->IsNodeAtPoint(x,y)
-	    &&  input->IsPointOnInputLine(x,y))
+	    && (input->IsPointOnInputLine(x,y))
+	        || IsPointOnInputLine(x, y))
 		return true;
 	
 	std::vector<WireNode*>::iterator node;
@@ -217,4 +231,5 @@ WireNode::IsNodeAtPoint(int x, int y)
 {
 	return (this->x == x && this->y == y);
 } // WireNode::IsNodeAtPoint
+
 

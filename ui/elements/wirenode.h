@@ -1,6 +1,9 @@
 #ifndef ELEMENTS_WIRE_NODE_H
 #define ELEMENTS_WIRE_NODE_H
 
+#define WIRE_NODE_BLOB_SIZE_DIVISOR 3
+#define WIRE_NODE_SELECT_RING_SPACING 2
+
 #include <vector>
 
 #include <SDL.h>
@@ -29,6 +32,14 @@ namespace gator {
 			private:
 				WireNode *input;
 				std::vector<WireNode*> outputs;
+				
+				virtual bool HasBlob(void);
+			
+			public:
+				virtual bool IsAtPoint(int x, int y);
+			private:
+				virtual bool IsNodeAtPoint(int x, int y);
+				virtual bool IsPointOnInputLine(int x, int y);
 			
 			public:
 				virtual void ConnectInput(WireNode *input);
