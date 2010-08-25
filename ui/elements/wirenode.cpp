@@ -154,8 +154,7 @@ WireNode::IsAtPoint(int x, int y)
 	
 	if (input != NULL
 	    && !input->IsNodeAtPoint(x,y)
-	    && (input->IsPointOnInputLine(x,y))
-	        || IsPointOnInputLine(x, y))
+	    && IsPointOnInputLine(x, y))
 		return true;
 	
 	std::vector<WireNode*>::iterator node;
