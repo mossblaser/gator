@@ -38,6 +38,7 @@ namespace gator {
 			
 			public:
 				virtual void ConnectInput(WireNode *input);
+				virtual void DisconnectInput(void);
 				
 				virtual void ConnectOutput(WireNode *output);
 				virtual void DisconnectOutput(WireNode *output);

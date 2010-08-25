@@ -15,7 +15,14 @@ Selectable(x, y, AND_GATE_WIDTH, AND_GATE_HEIGHT)
 
 WireNode::~WireNode(void)
 {
-	// Do nothing...
+	if (input)
+		input->DisconnectOutput(this);
+	
+	std::vector<WireNode*>::iterator node;
+	for (node = outputs.begin(); node != outputs.end(); ++node) {
+		WireNode *output = (*node);
+		output->DisconnectInput();
+	}
 } // WireNode::~WireNode
 
 
@@ -122,6 +129,13 @@ WireNode::ConnectInput(WireNode *input)
 {
 	this->input = input;
 } // WireNode::ConnectInput
+
+
+void
+WireNode::DisconnectInput(void)
+{
+	this->input = NULL;
+} // WireNode::DisconnectInput
 
 
 void
