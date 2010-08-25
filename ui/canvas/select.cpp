@@ -112,6 +112,9 @@ Canvas::OnDelete(void)
 	for (element = elements.begin(); element != elements.end(); ++element) {
 		while(true) {
 			Selectable *elem = *element;
+			if (element == elements.end())
+				return deleted;
+			
 			if (elem->IsSelected()) {
 				element = elements.erase(element);
 				delete elem;
