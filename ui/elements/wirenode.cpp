@@ -262,6 +262,9 @@ WireNode::ToggleSelection(int x, int y)
 		return;
 	}
 	
+	// XXX: If you toggle the selection on a wire and some other outputs are
+	// connected then you don't really want to deselect this node however at the
+	// moment this happens.
 	if (input && IsPointOnInputLine(x, y)) {
 		if (input->IsSelected() == this->IsSelected()) {
 			this->Selectable::ToggleSelection(x, y);
