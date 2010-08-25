@@ -18,6 +18,9 @@ namespace gator {
 				Uint32 ElementSel;
 				Uint32 Wire;
 				Uint32 WireSel;
+				Uint32 ToolboxBG;
+				Uint32 ToolboxBorder;
+				Uint32 SelectBoxBorder;
 			
 			public:
 				Pallet(void);
@@ -31,6 +34,9 @@ namespace gator {
 				const Uint32 GetElementSel(void);
 				const Uint32 GetWire(void);
 				const Uint32 GetWireSel(void);
+				const Uint32 GetToolboxBG(void);
+				const Uint32 GetToolboxBorder(void);
+				const Uint32 GetSelectBoxBorder(void);
 				
 		}; // class Pallet
 		

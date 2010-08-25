@@ -11,9 +11,9 @@ BlitWidget(parent, surf)
 	SetOffsetY(0);
 	
 	grid = new Grid();
-	pallet = new Pallet();
 	
 	drag_started = false;
+	box_select_started = false;
 	
 	
 	// XXX: Testing...
@@ -102,8 +102,6 @@ Canvas::~Canvas(void)
 	     ++element) {
 		delete (*element);
 	}
-	
-	delete pallet;
 } // Canvas::~Canvas
 
 

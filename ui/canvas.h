@@ -110,6 +110,14 @@ namespace gator {
 				virtual void OnSelect(int x, int y, bool drag);
 				virtual void SelectAll(void);
 				virtual void SelectNone(void);
+				virtual void SelectRect(int x1, int y1, int x2, int y2);
+			
+			private:
+				bool box_select_started;
+				int box_select_start_x;
+				int box_select_start_y;
+				int box_select_end_x;
+				int box_select_end_y;
 				
 		}; // class Canvas
 		

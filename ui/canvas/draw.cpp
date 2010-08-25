@@ -3,13 +3,6 @@
 using namespace gator::ui;
 
 
-Pallet *
-Canvas::GetPallet(void)
-{
-	return pallet;
-} // Canvas::GetPallet
-
-
 bool
 Canvas::Draw(void)
 {
@@ -32,6 +25,12 @@ Canvas::Draw(void)
 		
 		if (IsRectOnScreen(x1, y1, x2, y2))
 			(*element)->Draw(this);
+	}
+	
+	if (box_select_started) {
+		rectangleColor(GetSurf(), XS(box_select_start_x), YS(box_select_start_y),
+		               XS(box_select_end_x), YS(box_select_end_y),
+		               GetPallet()->GetSelectBoxBorder());
 	}
 	
 	NeedsRedraw(true);
