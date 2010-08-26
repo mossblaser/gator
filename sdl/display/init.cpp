@@ -25,11 +25,6 @@ Display::OnInit(void)
 	gator::ui::Editor *editor1 = new gator::ui::Editor(NULL);
 	gator::ui::Editor *editor2 = new gator::ui::Editor(NULL);
 	
-	gator::ui::Canvas *canvas1 = new gator::ui::Canvas(NULL);
-	gator::ui::Canvas *canvas2 = new gator::ui::Canvas(NULL);
-	editor1->SetCanvas(canvas1);
-	editor2->SetCanvas(canvas2);
-	
 	gator::ui::EditorContainer *container = new gator::ui::EditorContainer(NULL);
 	container->SetSurf(display);
 	container->SetPallet(pallet);
@@ -39,7 +34,7 @@ Display::OnInit(void)
 	
 	container->AddEditor(editor1);
 	container->AddEditor(editor2);
-	container->SetLayout(gator::ui::EDITOR_CONTAINER_LAYOUT_VSPLIT);
+	container->SetLayout(gator::ui::EDITOR_CONTAINER_LAYOUT_HSPLIT);
 	container->SetFocus(editor1);
 	
 	widgets.push_back(container);

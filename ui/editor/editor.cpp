@@ -6,31 +6,20 @@ using namespace gator::ui;
 Editor::Editor(Widget *parent) :
 Widget(parent)
 {
-	canvas = NULL;
+	canvas = new Canvas(this);
+	SetupSize();
+	SetupPosition();
 } // Editor::Editor
 
 
 Editor::~Editor(void)
 {
-	// Do nothing...
+	delete GetCanvas();
 } // Editor::~Editor
-
-
-void
-Editor::SetCanvas(Canvas *canvas)
-{
-	this->canvas = canvas;
-	
-	if (this->canvas)
-		this->canvas->SetParent(this);
-	
-	SetupPosition();
-	SetupSize();
-} // Editor::SetCanvas
 
 
 Canvas *
 Editor::GetCanvas(void)
 {
 	return canvas;
-} // Editor::SetCanvas
+} // Editor::GetCanvas

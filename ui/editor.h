@@ -26,7 +26,6 @@ namespace gator {
 				Editor(Widget *parent);
 				virtual ~Editor(void);
 				
-				virtual void SetCanvas(Canvas *canvas);
 				virtual Canvas *GetCanvas(void);
 				
 				virtual bool Draw(void);
