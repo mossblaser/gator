@@ -1,6 +1,8 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
+#define DISPLAY_RESIZE_DELAY_TICKS 100
+
 #include <vector>
 
 #include <SDL.h>
@@ -53,6 +55,12 @@ namespace gator {
 				                         bool left,bool right,bool middle);
 				virtual void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
 				virtual void OnResize(int new_width, int new_height);
+			
+			protected:
+				int last_resize_ticks;
+				int resize_width;
+				int resize_height;
+				virtual void DoResize(int new_width, int new_height);
 			
 		}; // class Display
 		

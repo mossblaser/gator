@@ -16,6 +16,9 @@ Display::Display(void) : EventHandler()
 {
 	display = NULL;
 	running = true;
+	last_resize_ticks = 0;
+	resize_width = -1;
+	resize_height = -1;
 } // Display::Display
 
 Display::~Display(void)

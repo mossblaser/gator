@@ -28,9 +28,9 @@ Display::OnInit(void)
 	gator::ui::EditorContainer *container = new gator::ui::EditorContainer(NULL);
 	container->SetSurf(display);
 	container->SetPallet(pallet);
-	container->SetX(100);
-	container->SetY(100);
-	container->SetSize(VWIDTH - 200, VHEIGHT - 200);
+	container->SetX(0);
+	container->SetY(0);
+	container->SetSize(VWIDTH, VHEIGHT);
 	
 	container->AddEditor(editor1);
 	container->AddEditor(editor2);

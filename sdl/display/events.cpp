@@ -71,9 +71,22 @@ Display::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode)
 void
 Display::OnResize(int new_width, int new_height)
 {
-	// XXX: This event needs to be stalled somehow to allow WMs with live-resize
-	// to work properly without serious buggage.
+	if (last_resize_ticks == 0) {
+		DoResize(new_width, new_height);
+		resize_width = -1;
+		resize_height = -1;
+	} else {
+		resize_width = new_width;
+		resize_height = new_height;
+	}
 	
+	last_resize_ticks = SDL_GetTicks();
+} // Display::OnResize
+
+
+void
+Display::DoResize(int new_width, int new_height)
+{
 	width = new_width;
 	height = new_height;
 	display = SetVideoMode();
@@ -82,8 +95,7 @@ Display::OnResize(int new_width, int new_height)
 	for (widget = widgets.begin();
 	     widget != widgets.end();
 	     ++widget) {
-		// XXX: Testing
-		(*widget)->SetSize(new_width-200, new_height-200);
 		(*widget)->SetSurf(display);
+		(*widget)->SetSize(new_width, new_height);
 	}
-} // Display::OnResize
+} // Display::DoResize
