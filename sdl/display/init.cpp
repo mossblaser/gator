@@ -34,7 +34,7 @@ Display::OnInit(void)
 	
 	container->AddEditor(editor1);
 	container->AddEditor(editor2);
-	container->SetLayout(gator::ui::EDITOR_CONTAINER_LAYOUT_HSPLIT);
+	container->SetLayout(gator::ui::EDITOR_CONTAINER_LAYOUT_VSPLIT);
 	container->SetFocus(editor1);
 	
 	widgets.push_back(container);
