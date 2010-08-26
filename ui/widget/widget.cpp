@@ -3,10 +3,11 @@
 using namespace gator::ui;
 
 
-Widget::Widget(Widget *parent, SDL_Surface *surf) :
-parent(parent),
-surf(surf)
+Widget::Widget(Widget *parent) :
+parent(parent)
 {
+	surf = NULL;
+	pallet = NULL;
 	x = y = width = height = 0;
 } // Widget::Widget
 
@@ -34,7 +35,12 @@ Widget::NeedsRedraw(bool value)
 SDL_Surface *
 Widget::GetSurf(void)
 {
-	return surf;
+	if (surf)
+		return surf;
+	else if (GetParent())
+		return GetParent()->GetSurf();
+	else
+		return NULL;
 }
 
 
@@ -45,8 +51,29 @@ Widget::SetSurf(SDL_Surface *surf)
 }
 
 
+Widget *
+Widget::GetParent(void)
+{
+	return parent;
+}
+
+
+void
+Widget::SetParent(Widget *parent)
+{
+	this->parent = parent;
+}
+
+
+void
+Widget::SetPallet(Pallet *pallet)
+{
+	this->pallet = pallet;
+} // Widget::SetPallet
+
+
 Pallet *
 Widget::GetPallet(void)
 {
-	return parent ? parent->GetPallet() : NULL;
+	return (pallet ? pallet : (parent ? parent->GetPallet() : NULL));
 } // Widget::GetPallet

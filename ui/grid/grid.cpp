@@ -43,19 +43,19 @@ Grid::Draw(Canvas *canvas)
 		return false;
 	
 	// Get grid coordinates just off the edges of the screen
-	int l = canvas->SX(canvas->GetX()) - 1;
-	int r = canvas->SX(canvas->GetX() + canvas->GetWidth()) + 1;
-	int t = canvas->SY(canvas->GetY()) - 1;
-	int b = canvas->SY(canvas->GetY() + canvas->GetHeight()) + 1;
+	int l = canvas->SX(0) - 1;
+	int r = canvas->SX(canvas->GetWidth()) + 1;
+	int t = canvas->SY(0) - 1;
+	int b = canvas->SY(canvas->GetHeight()) + 1;
 	
 	// Counters
 	int x, y;
 	
 	// Pixel positions of edges of the screen.
-	int x1 = canvas->GetX();
-	int x2 = canvas->GetX() + canvas->GetWidth();
-	int y1 = canvas->GetY();
-	int y2 = canvas->GetY() + canvas->GetHeight();
+	int x1 = 0;
+	int x2 = canvas->GetWidth();
+	int y1 = 0;
+	int y2 = canvas->GetHeight();
 	
 	Uint32 colour = pallet->GetCanvasGridMin();
 	

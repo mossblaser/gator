@@ -17,6 +17,7 @@ namespace gator {
 			private:
 				Widget      *parent;
 				SDL_Surface *surf;
+				Pallet      *pallet;
 				bool         needs_redraw;
 				
 				int x, y, width, height;
@@ -28,10 +29,13 @@ namespace gator {
 				 * @param parent The parent Widget.
 				 * @param surf An SDL surface onto which this Widget should draw itself.
 				 */
-				Widget(Widget *parent, SDL_Surface *surf);
+				Widget(Widget *parent);
 				
 				/** Destructor */
 				virtual ~Widget(void);
+				
+				/** Get the pallet for this widget. */
+				virtual void SetPallet(Pallet *pallet);
 				
 				/** Get the pallet for this widget. */
 				virtual Pallet *GetPallet(void);
@@ -41,6 +45,12 @@ namespace gator {
 				
 				/** Get the surface for this widget. */
 				virtual SDL_Surface *GetSurf(void);
+				
+				/** Set the parent of this widget. */
+				virtual void SetParent(Widget *parent);
+				
+				/** Get the parent of this widget. */
+				virtual Widget *GetParent(void);
 				
 				/**
 				 * Does this widget need to be redrawn?

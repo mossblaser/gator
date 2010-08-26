@@ -19,7 +19,7 @@ namespace gator {
 				void SetupScreen(void);
 			
 			public:
-				BlitWidget(Widget *parent, SDL_Surface *surf);
+				BlitWidget(Widget *parent);
 				virtual ~BlitWidget(void);
 				
 				virtual void SetSurf(SDL_Surface *surf);

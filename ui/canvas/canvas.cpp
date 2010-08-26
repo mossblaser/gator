@@ -3,8 +3,8 @@
 using namespace gator::ui;
 
 
-Canvas::Canvas(Widget *parent, SDL_Surface *surf) :
-BlitWidget(parent, surf)
+Canvas::Canvas(Widget *parent) :
+BlitWidget(parent)
 {
 	SetScale(7);
 	SetOffsetX(0);

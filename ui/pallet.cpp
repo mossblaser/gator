@@ -5,7 +5,7 @@ using namespace gator::ui;
 
 Pallet::Pallet(void)
 {
-	BG              = 0x333333FF;
+	BG              = 0x222222FF;
 	CanvasBG        = 0x333333FF;
 	CanvasGridMaj   = 0x555555FF;
 	CanvasGridMin   = 0x444444FF;

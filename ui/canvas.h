@@ -38,7 +38,7 @@ namespace gator {
 				std::vector<Selectable*> elements;
 			
 			public:
-				Canvas(Widget *parent, SDL_Surface *surf);
+				Canvas(Widget *parent);
 				~Canvas(void);
 				
 				virtual bool Draw(void);

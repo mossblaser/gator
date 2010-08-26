@@ -82,6 +82,7 @@ Display::OnResize(int new_width, int new_height)
 	for (widget = widgets.begin();
 	     widget != widgets.end();
 	     ++widget) {
+		// XXX: Testing
 		(*widget)->SetSize(new_width-200, new_height-200);
 		(*widget)->SetSurf(display);
 	}

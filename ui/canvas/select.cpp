@@ -189,7 +189,6 @@ Canvas::SelectRect(int x1, int y1, int x2, int y2)
 	if (!shift)
 		SelectNone();
 	
-	// XXX: This is hyper-inefficient
 	std::vector<Selectable*>::iterator element;
 	for (element = elements.begin(); element != elements.end(); ++element) {
 		if ((*element)->IsInRect(x1, y1, x2, y2)) {

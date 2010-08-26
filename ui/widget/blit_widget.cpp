@@ -3,11 +3,11 @@
 using namespace gator::ui;
 
 
-BlitWidget::BlitWidget(Widget *parent, SDL_Surface *surf) :
-Widget(parent, NULL),
-target_surf(surf)
+BlitWidget::BlitWidget(Widget *parent) :
+Widget(parent)
 {
-	this->surf = NULL;
+	surf = NULL;
+	target_surf = NULL;
 } // BlitWidget::BlitWidget
 
 
@@ -51,7 +51,12 @@ BlitWidget::GetSurf(void)
 SDL_Surface *
 BlitWidget::GetTargetSurf(void)
 {
-	return target_surf;
+	if (target_surf)
+		return target_surf;
+	else if (GetParent())
+		return GetParent()->GetSurf();
+	else
+		return NULL;
 } // BlitWidget::GetTargetSurf
 
 
