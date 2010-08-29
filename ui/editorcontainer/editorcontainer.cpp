@@ -7,7 +7,7 @@ EditorContainer::EditorContainer(Widget *parent) :
 Widget(parent)
 {
 	focus = NULL;
-	layout = EDITOR_CONTAINER_LAYOUT_TAB;
+	layout = EditorContainer::LAYOUT_TAB;
 } // EditorContainer::EditorContainer
 
 
@@ -51,7 +51,7 @@ EditorContainer::RemoveEditor(Editor *editor)
 
 
 void
-EditorContainer::SetLayout(EditorContainerLayout layout)
+EditorContainer::SetLayout(EditorContainer::Layout layout)
 {
 	this->layout = layout;
 	SetupSize();
@@ -59,7 +59,7 @@ EditorContainer::SetLayout(EditorContainerLayout layout)
 } // EditorContainer::SetLayout
 
 
-EditorContainerLayout
+EditorContainer::Layout
 EditorContainer::GetLayout(void)
 {
 	return layout;

@@ -5,21 +5,13 @@
 #define ZOOM_SENSITIVITY 10
 
 
-#include <vector>
-
 #include <SDL_gfxPrimitives.h>
 #include "ui/pallet.h"
 #include "ui/blit_widget.h"
 #include "ui/grid.h"
 #include "ui/element.h"
+#include "ui/design.h"
 #include "ui/selectable.h"
-
-// XXX: For testing...
-#include "ui/elements/and.h"
-#include "ui/elements/or.h"
-#include "ui/elements/nor.h"
-#include "ui/elements/xor.h"
-#include "ui/elements/wirenode.h"
 
 namespace gator {
 	namespace ui {
@@ -35,13 +27,16 @@ namespace gator {
 			protected:
 				Grid *grid;
 			
-				std::vector<Selectable*> elements;
+				Design *design;
 			
 			public:
 				Canvas(Widget *parent);
 				~Canvas(void);
 				
 				virtual bool Draw(void);
+				
+				virtual void SetDesign(Design *design);
+				virtual Design *GetDesign(void);
 			
 			protected:
 				int scale;

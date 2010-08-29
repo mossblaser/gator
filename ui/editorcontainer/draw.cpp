@@ -13,7 +13,7 @@ EditorContainer::Draw(void)
 	
 	bool empty = true;
 	
-	if (GetLayout() == EDITOR_CONTAINER_LAYOUT_TAB) {
+	if (GetLayout() == EditorContainer::LAYOUT_TAB) {
 		Editor *editor = GetFocus();
 		if (editor) {
 			editor->Draw();

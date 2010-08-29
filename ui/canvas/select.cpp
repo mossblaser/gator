@@ -21,8 +21,8 @@ Canvas::OnSelect(int x, int y, bool drag)
 		 *  > Shift+click to add an element to the selection
 		 *  > Shift+click to toggle the selection on an element.
 		 */
-		std::vector<Selectable*>::iterator element;
-		for (element = elements.begin(); element != elements.end(); ++element) {
+		Design::iterator element;
+		for (element = design->begin(); element != design->end(); ++element) {
 			if ((*element)->IsAtPoint(grid_x, grid_y)) {
 				if (!shift)
 					(*element)->SetSelected(true);
@@ -40,9 +40,9 @@ Canvas::OnSelect(int x, int y, bool drag)
 		 */
 		bool element_at_point = false;
 		bool new_selection = false;
-		std::vector<Selectable*>::iterator element;
+		Design::iterator element;
 		
-		for (element = elements.begin(); element != elements.end(); ++element) {
+		for (element = design->begin(); element != design->end(); ++element) {
 			if ((*element)->IsAtPoint(grid_x, grid_y)) {
 				element_at_point = true;
 				if (!(*element)->IsSelected()) {
@@ -52,7 +52,7 @@ Canvas::OnSelect(int x, int y, bool drag)
 		}
 		
 		if (new_selection || !element_at_point) {
-			for (element = elements.begin(); element != elements.end(); ++element) {
+			for (element = design->begin(); element != design->end(); ++element) {
 				if ((*element)->IsAtPoint(grid_x, grid_y)) {
 					(*element)->SetSelected(true);
 				} else if (!element_at_point || !shift) {
@@ -90,9 +90,9 @@ Canvas::OnDrag(int x, int y, int relx, int rely, bool end_drag)
 				accx -= movx * GetScale();
 				accy -= movy * GetScale();
 				
-				std::vector<Selectable*>::iterator element;
-				for (element = elements.begin();
-						 element != elements.end();
+				Design::iterator element;
+				for (element = design->begin();
+						 element != design->end();
 						 ++element) {
 					if ((*element)->IsSelected()) {
 						(*element)->Move(movx, movy);
@@ -140,15 +140,15 @@ Canvas::OnDelete(void)
 {
 	bool deleted = false;
 	
-	std::vector<Selectable*>::iterator element;
-	for (element = elements.begin(); element != elements.end(); ++element) {
+	Design::iterator element;
+	for (element = design->begin(); element != design->end(); ++element) {
 		while(true) {
 			Selectable *elem = *element;
-			if (element == elements.end())
+			if (element == design->end())
 				return deleted;
 			
 			if (elem->IsSelected()) {
-				element = elements.erase(element);
+				element = design->erase(element);
 				delete elem;
 				deleted = true;
 				continue;
@@ -164,8 +164,8 @@ Canvas::OnDelete(void)
 void
 Canvas::SelectAll(void)
 {
-	std::vector<Selectable*>::iterator element;
-	for (element = elements.begin(); element != elements.end(); ++element) {
+	Design::iterator element;
+	for (element = design->begin(); element != design->end(); ++element) {
 		(*element)->SetSelected(true);
 	}
 } // Canvas::SelectAll
@@ -174,8 +174,8 @@ Canvas::SelectAll(void)
 void
 Canvas::SelectNone(void)
 {
-	std::vector<Selectable*>::iterator element;
-	for (element = elements.begin(); element != elements.end(); ++element) {
+	Design::iterator element;
+	for (element = design->begin(); element != design->end(); ++element) {
 		(*element)->SetSelected(false);
 	}
 } // Canvas::SelectNone
@@ -189,8 +189,8 @@ Canvas::SelectRect(int x1, int y1, int x2, int y2)
 	if (!shift)
 		SelectNone();
 	
-	std::vector<Selectable*>::iterator element;
-	for (element = elements.begin(); element != elements.end(); ++element) {
+	Design::iterator element;
+	for (element = design->begin(); element != design->end(); ++element) {
 		if ((*element)->IsInRect(x1, y1, x2, y2)) {
 			if (!shift)
 				(*element)->SetSelected(true);

@@ -7,7 +7,7 @@
 using namespace gator::ui;
 
 WireNode::WireNode(int x, int y) :
-Selectable(x, y, AND_GATE_WIDTH, AND_GATE_HEIGHT)
+Selectable(x, y, 0, 0)
 {
 	input = NULL;
 } // WireNode::WireNode
@@ -21,7 +21,10 @@ WireNode::~WireNode(void)
 	std::vector<WireNode*>::iterator node;
 	for (node = outputs.begin(); node != outputs.end(); ++node) {
 		WireNode *output = (*node);
-		output->DisconnectInput();
+		if (input)
+			input->ConnectOutput(output);
+		else
+			output->DisconnectInput();
 	}
 } // WireNode::~WireNode
 

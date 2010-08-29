@@ -14,9 +14,9 @@ Canvas::Draw(void)
 	
 	grid->Draw(this);
 	
-	std::vector<Selectable*>::iterator element;
-	for (element = elements.begin();
-	     element != elements.end();
+	Design::iterator element;
+	for (element = design->begin();
+	     element != design->end();
 	     ++element) {
 		int x1 = (*element)->GetX();
 		int x2 = x1 + (*element)->GetWidth();

@@ -16,7 +16,8 @@ namespace gator {
 		
 		class Editor : public Widget {
 			private:
-				Canvas *canvas;
+				Design *design;
+				Canvas canvas;
 				
 			protected:
 				void SetupSize(void);
@@ -36,6 +37,9 @@ namespace gator {
 				virtual void SetWidth(int width);
 				virtual void SetHeight(int height);
 				virtual void SetSize(int width, int height);
+				
+				virtual void SetDesign(Design *design);
+				virtual Design *GetDesign(void);
 			
 			public:
 				virtual bool OnButtonDown(int x, int y,

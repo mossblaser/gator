@@ -20,8 +20,8 @@ namespace gator {
 				NORGate(int x, int y);
 				virtual ~NORGate(void);
 				
-				virtual inline int GetWidth(void){ return AND_GATE_WIDTH; };
-				virtual inline int GetHeight(void){ return AND_GATE_HEIGHT; };
+				virtual inline int GetWidth(void){ return NOR_GATE_WIDTH; };
+				virtual inline int GetHeight(void){ return NOR_GATE_HEIGHT; };
 				virtual bool Draw(Canvas *canvas);
 		}; // class NORGate
 		

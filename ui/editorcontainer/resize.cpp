@@ -6,22 +6,22 @@ using namespace gator::ui;
 void
 EditorContainer::SetupSize(void)
 {
-	EditorContainerLayout layout = GetLayout();
+	EditorContainer::Layout layout = GetLayout();
 	
 	int num_editors = editors.size();
 	
-	int size = ((layout == EDITOR_CONTAINER_LAYOUT_VSPLIT)
+	int size = ((layout == EditorContainer::LAYOUT_VSPLIT)
 	            ? GetWidth() : GetHeight())
 	           / (num_editors ? num_editors : 1);
 	
 	std::list<Editor *>::iterator editor_i;
 	for (editor_i = editors.begin(); editor_i != editors.end(); ++editor_i) {
-		if (layout == EDITOR_CONTAINER_LAYOUT_TAB) {
+		if (layout == EditorContainer::LAYOUT_TAB) {
 			(*editor_i)->SetSize(GetWidth(), GetHeight());
 		} else {
 			(*editor_i)->SetSize(
-				(layout == EDITOR_CONTAINER_LAYOUT_VSPLIT) ? size : GetWidth(),
-				(layout == EDITOR_CONTAINER_LAYOUT_HSPLIT) ? size : GetHeight()
+				(layout == EditorContainer::LAYOUT_VSPLIT) ? size : GetWidth(),
+				(layout == EditorContainer::LAYOUT_HSPLIT) ? size : GetHeight()
 			);
 		}
 	}
@@ -55,27 +55,27 @@ EditorContainer::SetSize(int w, int h) {
 void
 EditorContainer::SetupPosition(void)
 {
-	EditorContainerLayout layout = GetLayout();
+	EditorContainer::Layout layout = GetLayout();
 	
 	int num_editors = editors.size();
 	
-	int size = ((layout == EDITOR_CONTAINER_LAYOUT_VSPLIT)
+	int size = ((layout == EditorContainer::LAYOUT_VSPLIT)
 	            ? GetWidth() : GetHeight())
 	           / (num_editors ? num_editors : 1);
 	
-	int position = (layout == EDITOR_CONTAINER_LAYOUT_VSPLIT)
+	int position = (layout == EditorContainer::LAYOUT_VSPLIT)
 	               ? GetX() : GetY();
 	
 	std::list<Editor *>::iterator editor_i;
 	for (editor_i = editors.begin(); editor_i != editors.end(); ++editor_i) {
-		if (layout == EDITOR_CONTAINER_LAYOUT_TAB) {
+		if (layout == EditorContainer::LAYOUT_TAB) {
 			(*editor_i)->SetX(GetX());
 			(*editor_i)->SetY(GetY());
 		} else {
 			(*editor_i)->SetX(
-				(layout == EDITOR_CONTAINER_LAYOUT_VSPLIT) ? position : GetX());
+				(layout == EditorContainer::LAYOUT_VSPLIT) ? position : GetX());
 			(*editor_i)->SetY(
-				(layout == EDITOR_CONTAINER_LAYOUT_HSPLIT) ? position : GetY());
+				(layout == EditorContainer::LAYOUT_HSPLIT) ? position : GetY());
 			position += size;
 		}
 	}

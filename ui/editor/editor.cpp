@@ -4,9 +4,10 @@ using namespace gator::ui;
 
 
 Editor::Editor(Widget *parent) :
-Widget(parent)
+Widget(parent),
+canvas(this)
 {
-	canvas = new Canvas(this);
+	design = NULL;
 	SetupSize();
 	SetupPosition();
 } // Editor::Editor
@@ -21,5 +22,20 @@ Editor::~Editor(void)
 Canvas *
 Editor::GetCanvas(void)
 {
-	return canvas;
+	return &canvas;
 } // Editor::GetCanvas
+
+
+void
+Editor::SetDesign(Design *design)
+{
+	this->design = design;
+	canvas.SetDesign(design);
+} // Editor::SetDesign
+
+
+Design *
+Editor::GetDesign(void)
+{
+	return design;
+} // Editor::GetDesign

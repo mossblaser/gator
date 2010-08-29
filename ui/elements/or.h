@@ -20,8 +20,8 @@ namespace gator {
 				ORGate(int x, int y);
 				virtual ~ORGate(void);
 				
-				virtual inline int GetWidth(void){ return AND_GATE_WIDTH; };
-				virtual inline int GetHeight(void){ return AND_GATE_HEIGHT; };
+				virtual inline int GetWidth(void){ return OR_GATE_WIDTH; };
+				virtual inline int GetHeight(void){ return OR_GATE_HEIGHT; };
 				virtual bool Draw(Canvas *canvas);
 		}; // class ORGate
 		

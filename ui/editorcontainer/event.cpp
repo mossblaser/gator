@@ -6,7 +6,7 @@ using namespace gator::ui;
 void
 EditorContainer::MoveFocusToPoint(int x, int y)
 {
-	if (GetLayout() == EDITOR_CONTAINER_LAYOUT_TAB)
+	if (GetLayout() == EditorContainer::LAYOUT_TAB)
 		return;
 	
 	std::list<Editor *>::iterator editor_i;
